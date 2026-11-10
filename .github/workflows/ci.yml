@@ -1,0 +1,19 @@
+name: CI Smoke Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write artifact marker
+        run: |
+          echo "demo-build artifact for CI smoke test" > artifact.txt
+          chmod +x artifact.txt
+
+      - name: Upload demo-build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-build
+          path: artifact.txt
